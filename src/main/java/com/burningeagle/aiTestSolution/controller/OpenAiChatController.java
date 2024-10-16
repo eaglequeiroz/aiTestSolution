@@ -3,6 +3,7 @@ package com.burningeagle.aiTestSolution.controller;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +18,9 @@ public class OpenAiChatController {
     }
 
     @GetMapping("/openai")
-    public String openai(){
+    public String openai(@RequestBody String prompt){
         return chatClient.prompt()
-                .user("Bring me 10 excellent jokes from game industry")
+                .user(prompt)
                 .call()
                 .content();
     }
